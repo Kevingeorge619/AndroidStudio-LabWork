@@ -35,5 +35,26 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e) {
             Toast.makeText(this, "Camera access error", Toast.LENGTH_SHORT).show();
         }
+
+       btn.setOnClickListener(v->toggleTorch());
+
+
+    }
+    private void toggleTorch() {
+        try {
+            if (isTorchOn) {
+                cameraManager.setTorchMode(cameraId, false);
+                isTorchOn = false;
+                btn.setText("Toggle Torch");
+                Toast.makeText(this, "Flashlight is OFF", Toast.LENGTH_SHORT).show();
+            } else {
+                cameraManager.setTorchMode(cameraId, true);
+                isTorchOn = true;
+                btn.setText("Torch is on");
+                Toast.makeText(this, "Flashlight is ON", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Camera access error", Toast.LENGTH_SHORT).show();
+        }
     }
 }
